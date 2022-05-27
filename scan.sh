@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -x
 set -e
 set -o pipefail
 set -u
@@ -23,7 +22,7 @@ init.config ()
 {
   log.info "initializing configuration"
 
-  export BOOST_CLI_URL=${BOOST_CLI_URL:-assets.build.boostsecurity.io}
+  export BOOST_CLI_URL=${BOOST_CLI_URL:-https://assets.build.boostsecurity.io}
          BOOST_CLI_URL=${BOOST_CLI_URL%*/}
   export BOOST_DOWNLOAD_URL=${BOOST_DOWNLOAD_URL:-${BOOST_CLI_URL}/boost/get-boost-cli}
   export BOOST_EXEC_COMMAND=${INPUT_EXEC_COMMAND:-}
