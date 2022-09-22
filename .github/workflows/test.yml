@@ -1,0 +1,24 @@
+name: test github action
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  test_action:
+    name: test github action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Execute example-diff-sarif
+        uses: ./
+        with:
+          api_enabled: "false"
+          registry_module: scanners/examples/example-diff-sarif

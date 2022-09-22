@@ -18,6 +18,12 @@ log.error ()
   printf "$(date +'%H:%M:%S') [\033[31m%s\033[0m] %s\n" "ERROR" "${*}";
 }
 
+git.ls_remote ()
+{
+  git ls-remote --symref origin HEAD \
+    | awk '/^ref:/{sub(/refs\/heads\//, "", $2); print $2}'
+}
+
 init.config ()
 {
   log.info "initializing configuration"
@@ -25,7 +31,10 @@ init.config ()
   export BOOST_CLI_URL=${BOOST_CLI_URL:-https://assets.build.boostsecurity.io}
          BOOST_CLI_URL=${BOOST_CLI_URL%*/}
   export BOOST_DOWNLOAD_URL=${BOOST_DOWNLOAD_URL:-${BOOST_CLI_URL}/boost-cli/get-boost-cli}
-  export BOOST_FORCE_COLORS="true"
+  export BOOST_LOG_COLORS=true
+
+  export BOOST_MAIN_BRANCH
+         BOOST_MAIN_BRANCH=${BOOST_MAIN_BRANCH:-$(git.ls_remote)}
 }
 
 init.cli ()
@@ -44,7 +53,7 @@ main.scan ()
   init.cli
 
   # shellcheck disable=SC2086
-  exec ${BOOST_EXE} scan run ${BOOST_CLI_ARGUMENTS:-}
+  exec ${BOOST_EXE} scan repo ${BOOST_CLI_ARGUMENTS:-} HEAD
 }
 
 main.scan

@@ -7,7 +7,7 @@ inputs:
     default: ""
   api_enabled:
     description: "Optional setting to enable offline mode"
-    default: "true"
+    default: true
   api_endpoint:
     description: "Boost API endpoint"
     required: true
@@ -39,7 +39,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/scan.sh
+    - run: ${{ github.action_path }}/lib/scan.sh
       shell: bash
       env:
         BOOST_API_ENABLED: ${{ inputs.api_enabled == true }}
