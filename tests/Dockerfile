@@ -3,7 +3,8 @@ ARG BASE_VERSION=3.16.2
 FROM alpine:${BASE_VERSION} AS base
   # hadolint ignore=DL3018
   RUN set -ex \
-   && apk add --no-cache bash curl git make parallel openssh ncurses
+   && apk add --no-cache bash curl git make parallel openssh ncurses \
+   && git config --global --add safe.directory /app
 
   ENV BATS_LIB_PATH=/opt/bats
 

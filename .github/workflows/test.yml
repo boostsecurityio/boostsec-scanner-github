@@ -17,8 +17,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Build test suite image
+        run: make test.build
       - name: Execute test suite
-        run: make test.build test
+        run: make test
       - name: Execute example-diff-sarif
         uses: ./
         with:

@@ -61,7 +61,6 @@ PROJECT_ROOT ?= $(shell git rev-parse --show-toplevel)
 PROJECT_NAME ?= $(shell basename ${PROJECT_ROOT})
 
 TEST_IMAGE   ?= ${PROJECT_NAME}:test
-
 #
 # Targets
 #
@@ -77,7 +76,7 @@ test:  ## Run test suite
 test: jobs := 4
 test: args :=
 test:
-	@docker run --rm -ti -v $${PWD}:/app ${TEST_IMAGE} --jobs ${jobs} ${args} tests
+	@docker run --rm -i -v $${PWD}:/app ${TEST_IMAGE} --jobs ${jobs} ${args} tests
 
 test.build:  ## Build test image
 test.build:
@@ -85,4 +84,4 @@ test.build:
 
 test.shell:  ## Execute shell in test image
 test.shell: test.build
-	docker run --rm -ti -v $${PWD}:/app --entrypoint bash ${TEST_IMAGE}
+	docker run --rm -i -v $${PWD}:/app --entrypoint bash ${TEST_IMAGE}
