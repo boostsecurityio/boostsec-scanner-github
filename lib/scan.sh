@@ -1,13 +1,5 @@
 #!/bin/bash
 
-set -e
-set -o pipefail
-set -u
-
-export BOOST_TMP_DIR=${BOOST_TMP_DIR:-${WORKSPACE_TMP:-${TMPDIR:-/tmp}}}
-export BOOST_EXE=${BOOST_EXE:-${BOOST_TMP_DIR}/boost-cli/latest}
-
-
 log.info ()
 { # $@=message
   printf "$(date +'%H:%M:%S') [\033[34m%s\033[0m] %s\n" "INFO" "${*}";
@@ -28,6 +20,9 @@ init.config ()
 {
   log.info "initializing configuration"
 
+  export BOOST_TMP_DIR=${BOOST_TMP_DIR:-${WORKSPACE_TMP:-${TMPDIR:-/tmp}}}
+  export BOOST_EXE=${BOOST_EXE:-${BOOST_TMP_DIR}/boost-cli/latest}
+
   export BOOST_CLI_URL=${BOOST_CLI_URL:-https://assets.build.boostsecurity.io}
          BOOST_CLI_URL=${BOOST_CLI_URL%*/}
   export BOOST_DOWNLOAD_URL=${BOOST_DOWNLOAD_URL:-${BOOST_CLI_URL}/boost-cli/get-boost-cli}
@@ -39,7 +34,7 @@ init.config ()
 
 init.cli ()
 {
-  if [ -f "${BOOST_BIN:-}" ]; then
+  if [ -f "${BOOST_EXE:-}" ]; then
     return
   fi
 
@@ -56,4 +51,10 @@ main.scan ()
   exec ${BOOST_EXE} scan repo ${BOOST_CLI_ARGUMENTS:-} HEAD
 }
 
-main.scan
+if [ "${0}" = "${BASH_SOURCE[0]}" ]; then
+  set -e
+  set -o pipefail
+  set -u
+
+  main.scan
+fi
