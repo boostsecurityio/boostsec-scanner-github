@@ -217,7 +217,7 @@ teardown ()
   export BOOST_TMP_DIR=${BATS_TEST_TMPDIR}
   export BOOST_CLI_ARGUMENTS=--help
 
-  run lib/scan.sh
+  run main.scan
 
   assert test -f "${BATS_TEST_TMPDIR}/boost-cli/latest"
   assert test -d "${BATS_TEST_TMPDIR}/boost-cli/$(ls -1d 1*)"

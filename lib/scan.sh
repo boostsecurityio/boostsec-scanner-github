@@ -26,10 +26,16 @@ init.config ()
   export BOOST_CLI_URL=${BOOST_CLI_URL:-https://assets.build.boostsecurity.io}
          BOOST_CLI_URL=${BOOST_CLI_URL%*/}
   export BOOST_DOWNLOAD_URL=${BOOST_DOWNLOAD_URL:-${BOOST_CLI_URL}/boost-cli/get-boost-cli}
-  export BOOST_LOG_COLORS=true
 
   export BOOST_MAIN_BRANCH
          BOOST_MAIN_BRANCH=${BOOST_MAIN_BRANCH:-$(git.ls_remote)}
+
+  init.ci.config
+}
+
+init.ci.config ()
+{
+  export BOOST_LOG_COLORS=true
 }
 
 init.cli ()
