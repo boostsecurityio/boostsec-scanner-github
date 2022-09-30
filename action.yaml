@@ -42,13 +42,13 @@ runs:
     - run: ${{ github.action_path }}/lib/scan.sh
       shell: bash
       env:
-        BOOST_API_ENABLED: ${{ inputs.api_enabled == true }}
+        BOOST_API_ENABLED: ${{ inputs.api_enabled }}
         BOOST_API_ENDPOINT: ${{ inputs.api_endpoint }}
         BOOST_API_TOKEN: ${{ inputs.api_token }}
         BOOST_CLI_ARGUMENTS: ${{ inputs.additional_args }}
         BOOST_CLI_VERSION: ${{ inputs.cli_version }}
         BOOST_GIT_MAIN_BRANCH: ${{ inputs.main_branch }}
-        BOOST_IGNORE_FAILURE: ${{ inputs.ignore_failure == true }}
+        BOOST_IGNORE_FAILURE: ${{ inputs.ignore_failure }}
         BOOST_LOG_LEVEL: ${{ inputs.log_level }}
         BOOST_DIFF_SCAN_TIMEOUT: ${{ inputs.scan_timeout }}
         BOOST_PRE_SCAN: ${{ inputs.pre_scan_cmd }}
