@@ -31,7 +31,7 @@ jobs:
         uses: boostsecurityio/boostsec-scanner-github@v4
         with:
           api_endpoint: https://api.boostsecurity.net
-          api_token: ${{ secrets.BOOST_API_KEY_DEV }}
+          api_token: ${{ secrets.BOOST_API_KEY }}
 ```
 
 ## Configuration
