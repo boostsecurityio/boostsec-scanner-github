@@ -1,14 +1,13 @@
 name: "Boost Security Scanner"
 description: "Scans a repository for security vulneratibilities"
 inputs:
-  action:
-    description: "Action to perform, one of: exec, scan"
-    required: true
-    default: scan
   additional_args:
     description: "Additional CLI arguments to pass"
     required: false
     default: ""
+  api_enabled:
+    description: "Optional setting to enable offline mode"
+    default: true
   api_endpoint:
     description: "Boost API endpoint"
     required: true
@@ -18,31 +17,39 @@ inputs:
     required: true
   cli_version:
     description: "Scanner version"
-    default: "3.0"
-  exec_command:
-    description: "Command to run when in exec mode"
+    default: "1"
+  ignore_failure:
+    description: "Ignore any exception returned by the scanner cli"
+    default: "false"
+  log_level:
+    description: "Set the cli logging level"
     default: ""
-  scanner_image:
-    description: "Scanner docker image url"
+  main_branch:
+    description: "Optional override for main branch detection"
     default: ""
-  scanner_version:
-    description: "Scanner docker image tag"
+  pre_scan_cmd:
+    description: "Optional command to run before scanning"
     default: ""
-  step_name:
-    description: "Identifier for this scanner step"
+  registry_module:
+    description: "Module within the scanner registry to execute"
+    required: true
+  scan_timeout:
+    description: "Maximum amount of time a diff scan should complete in"
     default: ""
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/scan.sh
+    - run: ${{ github.action_path }}/lib/scan.sh
       shell: bash
       env:
+        BOOST_API_ENABLED: ${{ inputs.api_enabled }}
         BOOST_API_ENDPOINT: ${{ inputs.api_endpoint }}
         BOOST_API_TOKEN: ${{ inputs.api_token }}
         BOOST_CLI_ARGUMENTS: ${{ inputs.additional_args }}
         BOOST_CLI_VERSION: ${{ inputs.cli_version }}
-        BOOST_SCANNER_IMAGE: ${{ inputs.scanner_image }}
-        BOOST_SCANNER_VERSION: ${{ inputs.scanner_version }}
-        BOOST_STEP_NAME: ${{ inputs.step_name }}
-        INPUT_ACTION: ${{ inputs.action }}
-        INPUT_EXEC_COMMAND: ${{ inputs.exec_command }}
+        BOOST_GIT_MAIN_BRANCH: ${{ inputs.main_branch }}
+        BOOST_IGNORE_FAILURE: ${{ inputs.ignore_failure }}
+        BOOST_LOG_LEVEL: ${{ inputs.log_level }}
+        BOOST_DIFF_SCAN_TIMEOUT: ${{ inputs.scan_timeout }}
+        BOOST_PRE_SCAN: ${{ inputs.pre_scan_cmd }}
+        BOOST_SCANNER_REGISTRY_MODULE: ${{ inputs.registry_module }}
