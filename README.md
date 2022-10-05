@@ -26,26 +26,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: BoostSecurity Scanner
-        uses: boostsecurityio/boostsec-scanner-github@v3
+        uses: boostsecurityio/boostsec-scanner-github@v4
         with:
-          action: scan
           api_endpoint: https://api.boostsecurity.net
           api_token: ${{ secrets.BOOST_API_KEY_DEV }}
 ```
 
 ## Configuration
 
-### `action` (Required, string)
-
-The action to perform by the plugin:
-- `scan`: Executes the BoostSecurity native scanner with a number of plugins
-- `exec`: Executes a custom command which outputs Sarif to stdout.
-
 ### `additional_args` (Optional, str)
 
 Additional CLI args to pass to the `boost` cli.
+
+### `api_enabled` (Optional, boolean string, default true)
+
+Enable or disable boost uploading results to the boost api
 
 ### `api_endpoint` (Optional, string)
 
@@ -61,21 +58,32 @@ file. Instead, it should be exposed via a **secret**.
 ### `cli_version` (Optional, string)
 
 Overrides the cli version to download when performing scans. If undefined,
-this will default to pulling "3.0".
+this will default to pulling "1".
 
-### `exec_command` (Optional, string)
+### `ignore_failure` (Optional, boolean string, default false)
 
-A custom command to run in by the `exec` action. This should be a command which executes a custom scanner and outputs only a Sarif document to stdout.
+Ignore any non-zero exit status and always return a success.
 
-The value may additionally contain the `%CWD%` placeholder which will be replaced by the correct working directory during evaluation. The is especially useful when combined with volume mounts in a docker command.
+### `log_level` (Optional, string, default INFO)
 
-### `scanner_image` (Optional, string)
+Change the CLI logging level.
 
-Overrides the docker image url to load when performing scans
+### `main_branch` (Optional, string)
 
-### `scanner_version` (Optional, string)
+The name of the main branch that PRs would merge into. This is automatically
+detected by querying the git server.
 
-Overrides the docker image tag to load when performing scans. If undefined,
-this will default to pulling the latest image from the current release channel.
+### `pre_scan_cmd` (Optional, string)
 
+Optional command to execute prior to scanning. This may be used to generate
+additional files that are not tracked in git.
+
+### `registry_module` (Required, string)
+
+The relative path towards a module within the [Scanner Registry](https://github.com/boostsecurityio/scanner-registry).
+To streamline the configuration, both the _scanners_ prefix and _module.yaml_ suffix may be omitted.
+
+### `scan_timeout` (Optional, number)
+
+The optional timeout after which the Github check will be marked as failed. This defaults to 120 seconds.
 
