@@ -27,8 +27,8 @@ init.config ()
          BOOST_CLI_URL=${BOOST_CLI_URL%*/}
   export BOOST_DOWNLOAD_URL=${BOOST_DOWNLOAD_URL:-${BOOST_CLI_URL}/boost-cli/get-boost-cli}
 
-  export BOOST_MAIN_BRANCH
-         BOOST_MAIN_BRANCH=${BOOST_MAIN_BRANCH:-$(git.ls_remote)}
+  export BOOST_GIT_MAIN_BRANCH
+         BOOST_GIT_MAIN_BRANCH=${BOOST_GIT_MAIN_BRANCH:-$(git.ls_remote)}
 
   init.ci.config
 }

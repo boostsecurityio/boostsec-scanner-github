@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.0..HEAD)
 
+## v4.0.1 - 2022-10-06 - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.0...v4.0.1)
+
+- Bugfix main branch variable after cli rename
+
 ## v4.0.0 - 2022-10-05 - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v3.0.0...v4.0.0)
 
 - The Boost CLI command and options has changed
