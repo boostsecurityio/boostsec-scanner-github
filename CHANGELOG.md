@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.0..HEAD)
 
+## v4.0.2 - 2022-10-06 - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.1...v4.0.2)
+
+- Remove the HEAD placeholder in the cli invocation
+
 ## v4.0.1 - 2022-10-06 - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.0...v4.0.1)
 
 - Bugfix main branch variable after cli rename
