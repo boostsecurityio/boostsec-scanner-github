@@ -210,7 +210,7 @@ teardown ()
   run main.scan
 
   boost_call_args=$(cat "${BATS_TEST_TMPDIR}/boost.call_args")
-  assert_equal "${boost_call_args}" "scan repo arguments HEAD"
+  assert_equal "${boost_call_args}" "scan repo arguments"
 }
 
 @test "scan" {
