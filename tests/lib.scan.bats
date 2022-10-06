@@ -6,7 +6,7 @@ setup ()
 
   PROJECT_ROOT=$(git rev-parse --show-toplevel)
 
-  export BOOST_MAIN_BRANCH="main" # do not attempt git ops
+  export BOOST_GIT_MAIN_BRANCH="main" # do not attempt git ops
 
   # shellcheck disable=SC1091
   source "${PROJECT_ROOT}/lib/scan.sh"
@@ -115,8 +115,8 @@ teardown ()
   assert_equal "${BOOST_LOG_COLORS}" true
 }
 
-@test "init.config BOOST_MAIN_BRANCH defined" {
-  export BOOST_MAIN_BRANCH=""
+@test "init.config BOOST_GIT_MAIN_BRANCH defined" {
+  export BOOST_GIT_MAIN_BRANCH=""
 
   pushd ${BATS_TEST_TMPDIR} > /dev/null
   git init test-repo
@@ -124,14 +124,14 @@ teardown ()
   git remote add origin https://github.com/bats-core/bats-core.git
   init.config
 
-  assert_equal "${BOOST_MAIN_BRANCH}" "master"
+  assert_equal "${BOOST_GIT_MAIN_BRANCH}" "master"
 }
 
-@test "init.config BOOST_MAIN_BRANCH preserved" {
-  export BOOST_MAIN_BRANCH="main"
+@test "init.config BOOST_GIT_MAIN_BRANCH preserved" {
+  export BOOST_GIT_MAIN_BRANCH="main"
   init.config
 
-  assert_equal "${BOOST_MAIN_BRANCH}" "main"
+  assert_equal "${BOOST_GIT_MAIN_BRANCH}" "main"
 }
 
 @test "init.cli creates tmpdir" {
