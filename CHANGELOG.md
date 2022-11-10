@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.0..HEAD)
+## Unreleased - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.3..HEAD)
+
+## v4.0.3 - 2022-10-10 - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.2...v4.0.3)
+
+- Change api endpoint to api.boostsecurity.io
 
 ## v4.0.2 - 2022-10-06 - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.1...v4.0.2)
 
