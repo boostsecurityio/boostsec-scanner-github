@@ -11,7 +11,7 @@ inputs:
   api_endpoint:
     description: "Boost API endpoint"
     required: true
-    default: https://api.boostsecurity.net
+    default: https://api.boostsecurity.io
   api_token:
     description: "Boost API token"
     required: true
