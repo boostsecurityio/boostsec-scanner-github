@@ -33,6 +33,12 @@ inputs:
   registry_module:
     description: "Module within the scanner registry to execute"
     required: true
+  scanner_id:
+    description: "Optional identifier to uniquely identify the scanner"
+    default: ""
+  scan_label:
+    description: "Optional identifier to identify a a monorepo component"
+    default: ""
   scan_timeout:
     description: "Maximum amount of time a diff scan should complete in"
     default: ""
@@ -52,4 +58,6 @@ runs:
         BOOST_LOG_LEVEL: ${{ inputs.log_level }}
         BOOST_DIFF_SCAN_TIMEOUT: ${{ inputs.scan_timeout }}
         BOOST_PRE_SCAN: ${{ inputs.pre_scan_cmd }}
+        BOOST_SCAN_LABEL: ${{ inputs.scan_label }}
+        BOOST_SCANNER_ID: ${{ inputs.scanner_id }}
         BOOST_SCANNER_REGISTRY_MODULE: ${{ inputs.registry_module }}

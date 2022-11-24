@@ -83,6 +83,14 @@ additional files that are not tracked in git.
 The relative path towards a module within the [Scanner Registry](https://github.com/boostsecurityio/scanner-registry).
 To streamline the configuration, both the _scanners_ prefix and _module.yaml_ suffix may be omitted.
 
+### `scanner_id` (Optional, string)
+
+Optional identifier to uniquely identify the scanner
+
+### `scan_label` (Optional, string)
+
+Optional identifier to identify a a monorepo component
+
 ### `scan_timeout` (Optional, number)
 
 The optional timeout after which the Github check will be marked as failed. This defaults to 120 seconds.
