@@ -40,10 +40,6 @@ init.ci.config ()
 
 init.cli ()
 {
-  if [ -f "${BOOST_EXE:-}" ]; then
-    return
-  fi
-
   mkdir -p "${BOOST_TMP_DIR}"
   curl --silent "${BOOST_DOWNLOAD_URL}" | bash
 }
