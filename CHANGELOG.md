@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.5..HEAD)
+## Unreleased - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.6..HEAD)
 
 ## v4.0.6 - 2023-02-10 - [Github](https://github.com/boostsecurityio/boostsec-scanner-github/compare/v4.0.5...v4.0.6)
 
