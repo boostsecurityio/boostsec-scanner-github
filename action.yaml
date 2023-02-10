@@ -39,6 +39,9 @@ inputs:
   scan_label:
     description: "Optional identifier to identify a a monorepo component"
     default: ""
+  scan_path:
+    description: "Optional relative path to scan"
+    default: ""
   scan_timeout:
     description: "Maximum amount of time a diff scan should complete in"
     default: ""
@@ -59,5 +62,6 @@ runs:
         BOOST_DIFF_SCAN_TIMEOUT: ${{ inputs.scan_timeout }}
         BOOST_PRE_SCAN: ${{ inputs.pre_scan_cmd }}
         BOOST_SCAN_LABEL: ${{ inputs.scan_label }}
+        BOOST_SCAN_PATH: ${{ inputs.scan_path }}
         BOOST_SCANNER_ID: ${{ inputs.scanner_id }}
         BOOST_SCANNER_REGISTRY_MODULE: ${{ inputs.registry_module }}
