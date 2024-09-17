@@ -43,7 +43,7 @@ inputs:
     description: "Optional relative path to scan"
     default: ""
   scan_timeout:
-    description: "Maximum amount of time a diff scan should complete in"
+    description: "Maximum amount of time a diff scan should complete in (deprecated)"
     default: ""
   scan_diff_timeout:
     description: "Maximum amount of time a diff scan should complete in"
@@ -65,7 +65,8 @@ runs:
         BOOST_GIT_MAIN_BRANCH: ${{ inputs.main_branch }}
         BOOST_IGNORE_FAILURE: ${{ inputs.ignore_failure }}
         BOOST_LOG_LEVEL: ${{ inputs.log_level }}
-        BOOST_DIFF_SCAN_TIMEOUT: ${{ (inputs.scan_diff_timeout == "") && inputs.scan_timeout || inputs.scan_diff_timeout }}
+        BOOST_SCAN_TIMEOUT: ${{ scan_timeout }}
+        BOOST_DIFF_SCAN_TIMEOUT: ${{ inputs.scan_diff_timeout }}
         BOOST_MAIN_SCAN_TIMEOUT: ${{ inputs.scan_main_timeout }}
         BOOST_PRE_SCAN: ${{ inputs.pre_scan_cmd }}
         BOOST_SCAN_LABEL: ${{ inputs.scan_label }}
