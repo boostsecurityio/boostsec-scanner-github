@@ -97,7 +97,15 @@ Optional path within the git repository to execute scanners in.
 
 When this parameter is specified, you must also provide a `scan_label` to identify the component.
 
-### `scan_timeout` (Optional, number)
+### `scan_timeout` (Optional, number) deprecated
 
 The optional timeout after which the Github check will be marked as failed. This defaults to 120 seconds.
+
+### `scan_diff_timeout` (Optional, number)
+
+The optional timeout on a diff scan after which the Github check will be marked as failed. This defaults to 120 seconds.
+
+### `scan_main_timeout` (Optional, number)
+
+The optional timeout on a main scan after which the Github check will be marked as failed. This defaults to 2 hours.
 
