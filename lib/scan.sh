@@ -20,6 +20,8 @@ init.config ()
 {
   log.info "initializing configuration"
 
+  export BOOST_DIFF_SCAN_TIMEOUT=${BOOST_DIFF_SCAN_TIMEOUT:-${BOOST_SCAN_TIMEOUT:-}}
+
   export BOOST_TMP_DIR=${BOOST_TMP_DIR:-${WORKSPACE_TMP:-${TMPDIR:-/tmp}}}
   export BOOST_EXE=${BOOST_EXE:-${BOOST_TMP_DIR}/boost-cli/latest}
 
