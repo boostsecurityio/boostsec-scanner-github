@@ -53,10 +53,10 @@ main.scan ()
 
   if [ -n "${BOOST_TRIGGER_ID:-}" ]; then
     # shellcheck disable=SC2086
-    exec ${BOOST_EXE} scan repo ${BOOST_CLI_ARGUMENTS:-}
+    exec ${BOOST_EXE} scan trigger ${BOOST_CLI_ARGUMENTS:-}
   else
     # shellcheck disable=SC2086
-    exec ${BOOST_EXE} scan trigger ${BOOST_CLI_ARGUMENTS:-}
+    exec ${BOOST_EXE} scan repo ${BOOST_CLI_ARGUMENTS:-}
   fi
 }
 
