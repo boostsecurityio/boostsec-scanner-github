@@ -32,7 +32,7 @@ inputs:
     default: ""
   registry_module:
     description: "Module within the scanner registry to execute"
-    required: true
+    default: ""
   scanner_id:
     description: "Optional identifier to uniquely identify the scanner"
     default: ""
@@ -50,6 +50,9 @@ inputs:
     default: ""
   scan_main_timeout:
     description: "Maximum amount of time a main scan should complete in"
+    default: ""
+  trigger_id:
+    description: "Boost API workflow trigger id"
     default: ""
 runs:
   using: "composite"
@@ -73,3 +76,4 @@ runs:
         BOOST_SCAN_PATH: ${{ inputs.scan_path }}
         BOOST_SCANNER_ID: ${{ inputs.scanner_id }}
         BOOST_SCANNER_REGISTRY_MODULE: ${{ inputs.registry_module }}
+        BOOST_TRIGGER_ID: ${{ inputs.trigger_id }}

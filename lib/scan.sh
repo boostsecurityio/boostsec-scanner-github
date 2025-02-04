@@ -20,8 +20,6 @@ init.config ()
 {
   log.info "initializing configuration"
 
-  export BOOST_DIFF_SCAN_TIMEOUT=${BOOST_DIFF_SCAN_TIMEOUT:-${BOOST_SCAN_TIMEOUT:-}}
-
   export BOOST_TMP_DIR=${BOOST_TMP_DIR:-${WORKSPACE_TMP:-${TMPDIR:-/tmp}}}
   export BOOST_EXE=${BOOST_EXE:-${BOOST_TMP_DIR}/boost-cli/latest}
 
@@ -29,8 +27,12 @@ init.config ()
          BOOST_CLI_URL=${BOOST_CLI_URL%*/}
   export BOOST_DOWNLOAD_URL=${BOOST_DOWNLOAD_URL:-${BOOST_CLI_URL}/boost-cli/get-boost-cli}
 
-  export BOOST_GIT_MAIN_BRANCH
-         BOOST_GIT_MAIN_BRANCH=${BOOST_GIT_MAIN_BRANCH:-$(git.ls_remote)}
+  if [ -z "${BOOST_TRIGGER_ID:-}" ]; then
+    export BOOST_DIFF_SCAN_TIMEOUT=${BOOST_DIFF_SCAN_TIMEOUT:-${BOOST_SCAN_TIMEOUT:-}}
+
+    export BOOST_GIT_MAIN_BRANCH
+           BOOST_GIT_MAIN_BRANCH=${BOOST_GIT_MAIN_BRANCH:-$(git.ls_remote)}
+  fi
 
   init.ci.config
 }
@@ -51,8 +53,13 @@ main.scan ()
   init.config
   init.cli
 
-  # shellcheck disable=SC2086
-  exec ${BOOST_EXE} scan repo ${BOOST_CLI_ARGUMENTS:-}
+  if [ -n "${BOOST_TRIGGER_ID:-}" ]; then
+    # shellcheck disable=SC2086
+    exec ${BOOST_EXE} scan trigger ${BOOST_CLI_ARGUMENTS:-}
+  else
+    # shellcheck disable=SC2086
+    exec ${BOOST_EXE} scan repo ${BOOST_CLI_ARGUMENTS:-}
+  fi
 }
 
 if [ "${0}" = "${BASH_SOURCE[0]}" ]; then
